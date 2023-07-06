@@ -10,7 +10,7 @@ export async function POST(req: NextRequest, res: NextResponse){
  try{
 
    let newUser = await client.createIfNotExists(body)
-   return NextResponse.json('Successful login!')
+   return NextResponse.json('Successful login')
 
  }catch(err){
     return NextResponse.json({message:'Error'},{status:500})

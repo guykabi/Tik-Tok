@@ -43,7 +43,7 @@ const VideoPost: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
   if(!isShowingOnHome) {
     return (
       <div>
-        <Link href={`/detail/${_id}`} passHref>
+        <Link href={`/detail/${_id}`} passHref as='video'>
           <video
             loop
             src={video.asset.url}
@@ -56,7 +56,7 @@ const VideoPost: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
                 {likes?.length || 0}
               </p>
             </div>
-        <Link href={`/detail/${_id}`} passHref>
+        <Link href={`/detail/${_id}`} as='type' passHref>
           <p className='mt-5 text-md text-gray-800 cursor-pointer w-210'>
             {caption}
           </p>
@@ -70,7 +70,7 @@ const VideoPost: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
       <div>
         <div className='flex gap-3 p-2 cursor-pointer font-semibold rounded '>
           <div className='md:w-16 md:h-16 w-10 h-10'>
-            <Link href={`/profile/${postedBy?._id}`} passHref>
+            <Link href={`/profile/${postedBy?._id}`} as='image' passHref>
               <>
                 <Image
                   width={62}

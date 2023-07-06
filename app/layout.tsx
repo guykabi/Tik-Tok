@@ -25,7 +25,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-          <body>
+        <body>
           <GoogleOAuthProvider clientId={`${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`}>
           <div className='xl:w-[1200px] m-auto overflow-hidden h-[100vh]'>
             <NavBar/>
@@ -38,8 +38,8 @@ export default function RootLayout({
               </div>
              </div>
             </div>
-            </GoogleOAuthProvider>
-          </body>    
+          </GoogleOAuthProvider>
+        </body>
     </html>
   )
 }

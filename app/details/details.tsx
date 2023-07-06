@@ -9,6 +9,7 @@ import { MdOutlineCancel } from 'react-icons/md';
 import { BsFillPlayFill } from 'react-icons/bs';
 import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi';
 
+
 import Comments from '../../components/Comments';
 import LikeButton from '../../components/LikeBtn';
 import authStore from '../../zustore/auth-store';
@@ -22,10 +23,12 @@ interface IProps {
 
 const Details = ({ postDetails }: IProps) => {
   const [post, setPost] = useState(postDetails);
+  const [isSSR, setIsSSR] = useState(true);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isVideoMuted, setIsVideoMuted] = useState<boolean>(false);
   const [isPostingComment, setIsPostingComment] = useState<boolean>(false);
   const [comment, setComment] = useState<string>('');
+
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const router = useRouter()
@@ -40,22 +43,31 @@ const Details = ({ postDetails }: IProps) => {
       videoRef?.current?.play();
       setIsPlaying(true);
     }
-  };
+  }; 
+
 
   useEffect(() => {
+    setIsSSR(false);
+  }, []);  
+
+
+  useEffect(() => {
+    
     if (post && videoRef?.current) {
       videoRef.current.muted = isVideoMuted;
     }
   }, [post, isVideoMuted]);
 
   const handleLike = async (like: boolean) => {
+    
     if (userProfile) {
-      const res = await axios.put('like', {
+      const {data:res} = await axios.put('like', {
         userId: userProfile._id,
         postId: post?._id,
         like
       });
-      setPost({ ...post, likes: res.data.likes });
+  
+      setPost({ ...post, likes: res.likes });
     }
   };
 
@@ -75,13 +87,16 @@ const Details = ({ postDetails }: IProps) => {
         setIsPostingComment(false);
       }
     }
-  };
+  }; 
+
+
+  if (isSSR) return null;
 
   return (
     <>
       {post && (
         <div className='flex w-full absolute left-0 top-0 bg-white flex-wrap lg:flex-nowrap'>
-          <div className='relative flex-2 w-[1000px] lg:w-9/12 flex justify-center items-center bg-blurred-img bg-no-repeat bg-cover bg-center'>
+          <div className='relative flex-2 w-[1000px] lg:w-9/12 flex justify-center items-center bg-black r'>
             <div className='opacity-90 absolute top-6 left-2 lg:left-6 flex gap-6 z-50'>
               <p className='cursor-pointer ' onClick={() => router.back()}>
                 <MdOutlineCancel className='text-white text-[35px] hover:opacity-90' />
@@ -120,7 +135,10 @@ const Details = ({ postDetails }: IProps) => {
           </div>
           <div className='relative w-[1000px] md:w-[900px] lg:w-[700px]'>
             <div className='lg:mt-20 mt-10'>
-              <Link href={`/profile/${post.postedBy._id}`} passHref>
+              <Link 
+              href={`/profile/${post.postedBy._id}`} 
+              as='image'
+              passHref>
                 <div className='flex gap-4 mb-4 bg-white w-full pl-10 cursor-pointer'>
                   <Image
                     width={60}
@@ -142,8 +160,9 @@ const Details = ({ postDetails }: IProps) => {
                 <p className=' text-md text-gray-600'>{post.caption}</p>
               </div>
               <div className='mt-10 px-10'>
-                {userProfile && <LikeButton
-                  likes={post.likes}
+                {userProfile && 
+                <LikeButton
+                  likes={post?.likes}
                   flex='flex'
                   handleLike={() => handleLike(true)}
                   handleDislike={() => handleLike(false)}

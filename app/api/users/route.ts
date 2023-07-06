@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { allUsersQuery } from '../../../utils/queries';
 import client from '../../../sanity/config/client-config'
 
-export default async function GET(req: NextRequest, res: NextResponse) {
+export async function GET(req: NextRequest, res: NextResponse) {
 
   try{
     const users = await client.fetch(allUsersQuery());

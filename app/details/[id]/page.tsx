@@ -8,9 +8,8 @@ export default async function Page({params: { id },
          params: { id: string };
        }){
 
- 
+   
   const {data:post} = await axios(`post/${id}`)
-  
   
   return (
     <div>

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
+import { useParams } from 'next/navigation';
 import { GoVerified } from 'react-icons/go';
 import Link from 'next/link';
 
@@ -14,17 +14,17 @@ import { IUser, Video } from '../../types';
 const Search = ({ videos }: { videos: Video[] }) => {
   const [isAccounts, setIsAccounts] = useState(false);
   const { allUsers }: { allUsers: IUser[] } = authStore();
-
-  const router = useRouter();
-  const { searchTerm }: any = router.query;
-
+  console.log(allUsers);
+  
+  const {key} = useParams();
+  
   const accounts = isAccounts ? 'border-b-2 border-black' : 'text-gray-400';
   const isVideos = !isAccounts ? 'border-b-2 border-black' : 'text-gray-400';
-  const searchedAccounts = allUsers?.filter((user: IUser) => user.userName.toLowerCase().includes(searchTerm));
+  const searchedAccounts = allUsers?.filter((user: IUser) => user.userName.toLowerCase().includes(key));
   
   return (
     <div className='w-full  '>
-      <div className='flex gap-10 mb-10 border-b-2 border-gray-200 md:fixed z-50 bg-white w-full'>
+      <div className='flex gap-10 mb-10  border-gray-200 md:fixed z-50  w-full'>
         <p onClick={() => setIsAccounts(true)} className={`text-xl  font-semibold cursor-pointer ${accounts} mt-2`}>
           Accounts
         </p>
@@ -55,7 +55,7 @@ const Search = ({ videos }: { videos: Video[] }) => {
               </Link>
             ))
           ) : (
-            <NoResults text={`No Account Results for ${searchTerm}`} />
+            <NoResults text={`No Account Results for ${key}`} />
           )}
         </div>
       ) : (
@@ -65,7 +65,7 @@ const Search = ({ videos }: { videos: Video[] }) => {
               <VideoPost post={post} key={idx} />
             ))
           ) : (
-            <NoResults text={`No Video Results for ${searchTerm}`} />
+            <NoResults text={`No Video Results for ${key}`} />
           )}
         </div>
       )}

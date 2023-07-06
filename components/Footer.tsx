@@ -17,7 +17,7 @@ const Footer :NextPage= () => {
     <div className='mt-6 hidden xl:block'>
     <List items={footerItemsTop} mt={false} />
     <List items={footerItems} mt />
-    <p className='text-gray-400 text-sm mt-5'>© 2023 Tik-Tok</p>
+    <p className='text-gray-400 text-sm mt-5'>© 2023 Vik-Vok</p>
   </div>
   )
 }

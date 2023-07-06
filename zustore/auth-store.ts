@@ -12,7 +12,6 @@ const authZuStore = (set: any) => ({
 
   fetchAllUsers: async () => {
     const response = await axios.get('users');
-    console.log('All users:', response);
     
     set({ allUsers: response.data });
   },

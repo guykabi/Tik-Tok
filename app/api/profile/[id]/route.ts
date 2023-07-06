@@ -5,7 +5,7 @@ import { singleUserQuery,
          userLikedPostsQuery } from '../../../../utils/queries';
 import client from '../../../../sanity/config/client-config'
 
-export default async function GET(req: NextRequest,{params}:any ,res: NextResponse) {
+export async function GET(req: NextRequest,{params}:any ,res: NextResponse) {
  
     const { id } = params
 

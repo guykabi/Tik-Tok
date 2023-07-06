@@ -43,7 +43,6 @@ const Profile = ({ data }: IProps) => {
           <Image
             width={120}
             height={120}
-            layout='responsive'
             className='rounded-full'
             src={user.image}
             alt='user-profile'
