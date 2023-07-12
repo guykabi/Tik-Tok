@@ -43,7 +43,7 @@ const VideoPost: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
   if(!isShowingOnHome) {
     return (
       <div>
-        <Link href={`/detail/${_id}`} passHref as='video'>
+        <Link href={`/details/${_id}`} passHref>
           <video
             loop
             src={video.asset.url}
@@ -56,7 +56,7 @@ const VideoPost: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
                 {likes?.length || 0}
               </p>
             </div>
-        <Link href={`/detail/${_id}`} as='type' passHref>
+        <Link href={`/details/${_id}`} as='type' passHref>
           <p className='mt-5 text-md text-gray-800 cursor-pointer w-210'>
             {caption}
           </p>
@@ -66,9 +66,9 @@ const VideoPost: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
   }
 
   return (
-    <div className='flex flex-col border-b-2 border-gray-200 pb-6'>
+    <div className='flex flex-col border-b-2 border-gray-200 pb-6 w-full	'>
       <div>
-        <div className='flex gap-3 p-2 cursor-pointer font-semibold rounded '>
+        <div className='flex gap-3 p-2 cursor-pointer font-semibold rounded'>
           <div className='md:w-16 md:h-16 w-10 h-10'>
             <Link href={`/profile/${postedBy?._id}`} as='image' passHref>
               <>
@@ -101,7 +101,7 @@ const VideoPost: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
         </div>
       </div>
 
-      <div className='lg:ml-20 flex gap-4 relative'>
+      <div className='lg:ml-20 flex gap-4 relative m-auto'>
         <div
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
