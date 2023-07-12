@@ -4,6 +4,7 @@ import React,{useState} from 'react'
 import Link from 'next/link'
 import { NextPage } from 'next';
 import {usePathname} from 'next/navigation'
+import authStore from '../zustore/auth-store';
 import Suggestations from './Suggestations';
 import Discover from './Discover';
 import Footer from './Footer';
@@ -13,7 +14,9 @@ import { ImCancelCircle } from 'react-icons/im';
 
 const SideBar: NextPage = () => {
 
+  
 const [showSidebar, setShowSidebar] = useState<Boolean>(true);
+const { fetchAllUsers, allUsers }: any = authStore();
 const pathname = usePathname();
 
 const activeLink = 'flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold text-[#F51997] rounded';
@@ -44,7 +47,9 @@ const normalLink = 'flex items-center gap-3 hover:bg-primary p-3 justify-center 
           </div>
           
           <Discover />
-          <Suggestations/>
+          <Suggestations 
+            fetchAllUsers={fetchAllUsers}
+            allUsers={allUsers}/>
           <Footer />
         </div>
       )}

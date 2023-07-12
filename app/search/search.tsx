@@ -14,7 +14,6 @@ import { IUser, Video } from '../../types';
 const Search = ({ videos }: { videos: Video[] }) => {
   const [isAccounts, setIsAccounts] = useState(false);
   const { allUsers }: { allUsers: IUser[] } = authStore();
-  console.log(allUsers);
   
   const {key} = useParams();
   
@@ -23,8 +22,8 @@ const Search = ({ videos }: { videos: Video[] }) => {
   const searchedAccounts = allUsers?.filter((user: IUser) => user.userName.toLowerCase().includes(key));
   
   return (
-    <div className='w-full  '>
-      <div className='flex gap-10 mb-10  border-gray-200 md:fixed z-50  w-full'>
+    <div className='w-full'>
+      <div className='flex gap-10 mb-10  border-gray-200 z-50  w-full mb-10'>
         <p onClick={() => setIsAccounts(true)} className={`text-xl  font-semibold cursor-pointer ${accounts} mt-2`}>
           Accounts
         </p>
@@ -33,7 +32,7 @@ const Search = ({ videos }: { videos: Video[] }) => {
         </p>
       </div>
       {isAccounts ? (
-        <div className='md:mt-16'>
+        <div className='mt-16'>
           {searchedAccounts.length > 0 ? (
             searchedAccounts.map((user: IUser, idx: number) => (
               <Link key={idx} href={`/profile/${user._id}`}>

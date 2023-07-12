@@ -23,7 +23,6 @@ interface IProps {
 
 const Details = ({ postDetails }: IProps) => {
   const [post, setPost] = useState(postDetails);
-  const [isSSR, setIsSSR] = useState(true);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [isVideoMuted, setIsVideoMuted] = useState<boolean>(false);
   const [isPostingComment, setIsPostingComment] = useState<boolean>(false);
@@ -46,10 +45,6 @@ const Details = ({ postDetails }: IProps) => {
   }; 
 
 
-  useEffect(() => {
-    setIsSSR(false);
-  }, []);  
-
 
   useEffect(() => {
     
@@ -66,10 +61,11 @@ const Details = ({ postDetails }: IProps) => {
         postId: post?._id,
         like
       });
-  
-      setPost({ ...post, likes: res.likes });
+      
+      setPost({ ...post, likes: res?.likes });
     }
   };
+  
 
   const addComment = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -90,7 +86,6 @@ const Details = ({ postDetails }: IProps) => {
   }; 
 
 
-  if (isSSR) return null;
 
   return (
     <>

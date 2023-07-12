@@ -53,9 +53,9 @@ const NavBar = () => {
         >
           <input
             value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            className='bg-primary p-3 md:text-md font-medium border-2 border-gray-100 focus:outline-none focus:border-2 focus:border-gray-300 w-[300px] md:w-[350px] rounded-full  md:top-0'
-            placeholder='Search accounts and videos'
+            onChange={(e) => setSearchValue(e.target.value.trim())}
+            className='bg-white hover:bg-primary p-3 md:text-md font-medium border-2 border-gray-100 focus:outline-none focus:border-2 focus:border-gray-300 w-[300px]  md:w-[350px] rounded-full  md:top-0'
+            placeholder='Accounts and videos'
           />
           <button
             onClick={handleSearch}
@@ -71,7 +71,7 @@ const NavBar = () => {
           {userProfile?
           <div className='flex gap-5 md:gap-10'>
            <Link href='/create' passHref>
-              <button className='border-2 px-2 md:px-4 text-md font-semibold flex items-center gap-2'>
+              <button className='border-2 border-slate-100 px-2 hover:bg-primary md:px-4 text-md font-semibold flex items-center gap-2 p-2 rounded-lg	'>
                 <IoMdAdd className='text-xl' />{' '}
                 <span className='hidden md:block'>Create</span>
               </button>
