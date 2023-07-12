@@ -9,7 +9,7 @@ async function getVideos(topic:any): Promise<Video[]|string>{
     try{ 
 
       if(topic && topic !== 'All') {
-        const {data:res} =  await axios.get(`discover/${topic}`);
+        const {data:res} =  await axios(`discover/${topic}`);
         return res
       }
   
@@ -36,7 +36,7 @@ const Home = async ({searchParams,
  }
 
   return (
-    <div className='flex flex-col gap-10 videos h-full'>
+    <div className='flex flex-col gap-10 videos h-full '>
       { videos?.length &&typeof videos !== 'string' 
         ? videos?.map((video: Video) => (
           <VideoPost post={video} isShowingOnHome key={video._id} />
