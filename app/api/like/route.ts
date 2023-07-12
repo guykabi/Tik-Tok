@@ -24,7 +24,7 @@ export async function PUT(req: NextRequest, res: NextResponse) {
         .commit(); 
 
         
-        return NextResponse.json({data})
+        return NextResponse.json(data)
 
     }catch{
       return NextResponse.json({message:'Error'},{status:500})
