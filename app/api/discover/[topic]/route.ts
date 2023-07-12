@@ -11,7 +11,7 @@ export async function GET(req: NextRequest,{params}:any , res: NextResponse) {
 
       const videos = await client.fetch(videosQuery);
 
-      return NextResponse.json({videos},{status:200})
+      return NextResponse.json(videos)
 
     }catch{
       return NextResponse.json({message:'Error'},{status:500})
