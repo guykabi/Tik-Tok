@@ -30,7 +30,7 @@ const Comments = ({ comment, setComment, addComment, comments, isPostingComment 
       <div className='overflow-scroll lg:h-[457px]'>
         {comments?.length > 0 ? (
           comments?.map((item: IComment, idx: number) => (
-            <>
+            <div key={idx}>
               {allUsers?.map(
                 (user: IUser) =>
                   user._id === (item.postedBy._ref || item.postedBy._id) && (
@@ -61,7 +61,7 @@ const Comments = ({ comment, setComment, addComment, comments, isPostingComment 
                     </div>
                   )
               )}
-            </>
+            </div>
           ))
         ) : (
           <NoResults text='No Comments Yet!' />
