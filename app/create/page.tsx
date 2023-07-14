@@ -29,7 +29,7 @@ const Upload = () => {
 
   const uploadVideo = async (e: any) => {
     const selectedFile = e.target.files[0];
-    const fileTypes = ['video/mp4', 'video/webm'];
+    const fileTypes = ['video/*'];
 
     if (fileTypes.includes(selectedFile.type)) {
       setWrongFileType(false);
