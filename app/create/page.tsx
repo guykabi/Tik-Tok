@@ -31,7 +31,6 @@ const Upload = () => {
     const selectedFile = e.target.files[0];
     const fileTypes = ['video/mp4', 'video/webm'];
 
-    // uploading asset to sanity
     if (fileTypes.includes(selectedFile.type)) {
       setWrongFileType(false);
       setLoading(true);
@@ -104,9 +103,9 @@ const Upload = () => {
             <p className='text-2xl font-bold'>Upload Video</p>
             <p className='text-md text-gray-400 mt-1'>Share a video</p>
           </div>
-          <div className=' border-dashed rounded-xl border-4 border-gray-200 flex flex-col justify-center items-center  outline-none mt-10 w-[260px] h-[458px] p-10 cursor-pointer hover:border-red-300 hover:bg-gray-100'>
+          <div className=' border-dashed rounded-xl border-4 border-gray-200 flex flex-col justify-center items-center  outline-none mt-10 w-[260px] h-[458px] p-10 cursor-pointer hover:border-blue-400 hover:bg-gray-100'>
             {loading ? (
-              <p className='text-center text-3xl text-red-400 font-semibold'>
+              <p className='text-center text-3xl text-sky-500	 font-semibold'>
                 Uploading...
               </p>
             ) : (
@@ -128,7 +127,7 @@ const Upload = () => {
                         720x1280 resolution or higher <br />
                         Up to 10 minutes <br />
                       </p>
-                      <p className='bg-[#F51997] text-center mt-8 rounded text-white text-md font-medium p-2 w-52 outline-none'>
+                      <p className='bg-[#3b82f6] text-center mt-8 rounded text-white text-md font-medium p-2 w-52 outline-none'>
                         Select file
                       </p>
                     </div>
@@ -206,7 +205,7 @@ const Upload = () => {
               disabled={videoAsset?.url ? false : true}
               onClick={handlePost}
               type='button'
-              className='bg-[#F51997] text-white text-md font-medium p-2 rounded w-28 lg:w-44 outline-none'
+              className='bg-[#3b82f6] text-white text-md font-medium p-2 rounded w-28 lg:w-44 outline-none'
             >
               {savingPost}
             </button>
