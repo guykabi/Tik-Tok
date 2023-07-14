@@ -30,7 +30,10 @@ const Upload = () => {
   const uploadVideo = async (e: any) => {
     const selectedFile = e.target.files[0];
 
-    if (selectedFile.type.includes('video')) {
+    const acceptableTypes = ['video/mp4','video/webm,H.264, H.265, MPEG-4, M-JPEG']
+
+    if (acceptableTypes.includes(selectedFile.type)) {
+      
       setWrongFileType(false);
       setLoading(true);
   
