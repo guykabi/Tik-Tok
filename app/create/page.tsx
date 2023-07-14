@@ -29,10 +29,8 @@ const Upload = () => {
 
   const uploadVideo = async (e: any) => {
     const selectedFile = e.target.files[0];
-
-    const acceptableTypes = ['video/mp4','video/webm, video/quicktime']
     
-    if (acceptableTypes.includes(selectedFile.type)) {
+    if (selectedFile.type.includes('video')) {
       
       setWrongFileType(false);
       setLoading(true);
@@ -136,6 +134,7 @@ const Upload = () => {
                     <input
                       type='file'
                       name='upload-video'
+                      accept="video/*"
                       onChange={(e) => uploadVideo(e)}
                       className='w-0 h-0'
                     />
