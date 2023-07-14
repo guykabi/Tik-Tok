@@ -4,7 +4,11 @@ import './globals.css'
 import React,{useState,useEffect} from 'react'
 import NavBar from '@/components/NavBar'
 import SideBar from '@/components/SideBar'
+import { ToastContainer } from 'react-toastify';
 import {GoogleOAuthProvider} from '@react-oauth/google'
+import {ErrorBoundary} from 'react-error-boundary'
+import ErrorFallBack from '../components/Error'
+
 
 
 export default function RootLayout({
@@ -13,19 +17,22 @@ export default function RootLayout({
   children: React.ReactNode
 }) { 
 
+  const stage = process.env.NODE_ENV
+  const [isSSR, setIsSSR] = useState(true);
 
-  // const [isSSR, setIsSSR] = useState(true);
 
-  // //For prevent UI unmatch to server error
-  // useEffect(() => {
-  //   setIsSSR(false);
-  // }, []);  
+  //For prevent UI unmatch to server error
+  useEffect(() => {
+    if(stage !== 'development') return
+    setIsSSR(false);
+  }, []);  
 
-  // if (isSSR) return null;
+  if (isSSR && stage !== 'production') return null;
 
   return (
     <html lang="en">
         <body>
+        <ErrorBoundary FallbackComponent={ErrorFallBack}>
           <GoogleOAuthProvider clientId={`${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`}>
           <div className='xl:w-[1200px] m-auto overflow-hidden h-[100vh]'>
             <NavBar/>
@@ -38,7 +45,9 @@ export default function RootLayout({
               </div>
              </div>
             </div>
+            <ToastContainer/>
           </GoogleOAuthProvider>
+          </ErrorBoundary>
         </body>
     </html>
   )
