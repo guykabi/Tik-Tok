@@ -110,6 +110,7 @@ const Details = ({ postDetails,isError }: IProps) => {
                   onClick={onVideoClick}
                   loop
                   autoPlay={path?.includes('details')}
+                  playsInline
                   src={post?.video?.asset.url}
                   className=' h-full cursor-pointer'
                 ></video>

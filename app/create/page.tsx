@@ -96,8 +96,8 @@ const Upload = () => {
   };
 
   return (
-    <div className='flex w-full h-full absolute left-0 top-[60px] lg:top-[70px] mb-10 pt-10 lg:pt-20 bg-[#F8F8F8] justify-center'>
-      <div className=' bg-white rounded-lg xl:h-[80vh] flex gap-6 flex-wrap justify-center items-center p-14 pt-6'>
+    <div className='flex w-full h-fit	 absolute left-0 top-[60px] lg:top-[70px] mb-10 pt-10 lg:pt-20 bg-[#F8F8F8] justify-center'>
+      <div className=' bg-white rounded-lg xl:h-[80vh] flex gap-6 flex-wrap justify-center items-center p-14 pt-4'>
         <div>
           <div>
             <p className='text-2xl font-bold'>Upload Video</p>
@@ -147,7 +147,7 @@ const Upload = () => {
                       loop
                       src={videoAsset?.url}
                     />
-                    <div className=' flex justify-between gap-20'>
+                    <div className=' flex justify-between gap-20 h-10 max-h-10'>
                       <p className='text-lg'>{videoAsset.originalFilename}</p>
                       <button
                         type='button'
@@ -163,14 +163,15 @@ const Upload = () => {
             )}
           </div>
           {wrongFileType && (
-            <p className='text-center text-xl text-red-400 font-semibold mt-4 w-[260px]'>
+            <p className='text-center text-xl text-red-400 font-semibold mt-2 w-[260px]'>
               Select an video file (mp4 or webm)
             </p>
           )}
         </div>
-        <div className='flex flex-col gap-3 pb-10'>
+        <div className='flex flex-col gap-3 pb-10 mt-8'>
           <label className='text-md font-medium '>Caption</label>
           <input
+            maxLength={30}
             type='text'
             value={caption}
             onChange={(e) => setCaption(e.target.value)}
@@ -194,7 +195,7 @@ const Upload = () => {
               </option>
             ))}
           </select>
-          <div className='flex gap-6 mt-10'>
+          <div className='flex gap-6 mt-4'>
             <button
               onClick={handleDiscard}
               type='button'
