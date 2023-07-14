@@ -31,7 +31,7 @@ const Upload = () => {
     const selectedFile = e.target.files[0];
 
     const acceptableTypes = ['video/mp4','video/webm,H.264, H.265, MPEG-4, M-JPEG']
-
+    alert(selectedFile.type) //Temp
     if (acceptableTypes.includes(selectedFile.type)) {
       
       setWrongFileType(false);
