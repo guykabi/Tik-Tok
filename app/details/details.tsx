@@ -1,10 +1,11 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter,usePathname } from 'next/navigation';
 import { GoVerified } from 'react-icons/go';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useErrorBoundary } from "react-error-boundary";
 import { MdOutlineCancel } from 'react-icons/md';
 import { BsFillPlayFill } from 'react-icons/bs';
 import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi';
@@ -18,19 +19,22 @@ import axios from '../api/api-instance';
 
 interface IProps {
   postDetails: Video;
+  isError:Boolean
 }
 
 
-const Details = ({ postDetails }: IProps) => {
+const Details = ({ postDetails,isError }: IProps) => {
   const [post, setPost] = useState(postDetails);
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [isPlaying, setIsPlaying] = useState<boolean>(true);
+  const { showBoundary } = useErrorBoundary();
   const [isVideoMuted, setIsVideoMuted] = useState<boolean>(false);
   const [isPostingComment, setIsPostingComment] = useState<boolean>(false);
   const [comment, setComment] = useState<string>('');
 
 
   const videoRef = useRef<HTMLVideoElement>(null);
-  const router = useRouter()
+  const {back} = useRouter()
+  const path = usePathname()
 
   const { userProfile }: any = authStore();
    
@@ -43,7 +47,6 @@ const Details = ({ postDetails }: IProps) => {
       setIsPlaying(true);
     }
   }; 
-
 
 
   useEffect(() => {
@@ -83,8 +86,11 @@ const Details = ({ postDetails }: IProps) => {
         setIsPostingComment(false);
       }
     }
-  }; 
+  };  
 
+  if(isError){
+    showBoundary(isError)
+  }
 
 
   return (
@@ -93,7 +99,7 @@ const Details = ({ postDetails }: IProps) => {
         <div className='flex w-full absolute left-0 top-0 bg-white flex-wrap lg:flex-nowrap'>
           <div className='relative flex-2 w-[1000px] lg:w-9/12 flex justify-center items-center bg-black r'>
             <div className='opacity-90 absolute top-6 left-2 lg:left-6 flex gap-6 z-50'>
-              <p className='cursor-pointer ' onClick={() => router.back()}>
+              <p className='cursor-pointer ' onClick={() => back()}>
                 <MdOutlineCancel className='text-white text-[35px] hover:opacity-90' />
               </p>
             </div>
@@ -103,6 +109,7 @@ const Details = ({ postDetails }: IProps) => {
                   ref={videoRef}
                   onClick={onVideoClick}
                   loop
+                  autoPlay={path?.includes('details')}
                   src={post?.video?.asset.url}
                   className=' h-full cursor-pointer'
                 ></video>
