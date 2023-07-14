@@ -29,9 +29,8 @@ const Upload = () => {
 
   const uploadVideo = async (e: any) => {
     const selectedFile = e.target.files[0];
-    const fileTypes = ['video/*'];
 
-    if (fileTypes.includes(selectedFile.type)) {
+    //if (selectedFile.type.includes('video')) {
       setWrongFileType(false);
       setLoading(true);
   
@@ -44,10 +43,10 @@ const Upload = () => {
         setVideoAsset(uploaded);
         setLoading(false);
    
-    } else {
-      setLoading(false);
-      setWrongFileType(true);
-    }
+    //} else {
+      //setLoading(false);
+      //setWrongFileType(true);
+   // }
   };
 
   const handlePost = async () => {
@@ -134,6 +133,7 @@ const Upload = () => {
                     <input
                       type='file'
                       name='upload-video'
+                      accept="video/*"
                       onChange={(e) => uploadVideo(e)}
                       className='w-0 h-0'
                     />
