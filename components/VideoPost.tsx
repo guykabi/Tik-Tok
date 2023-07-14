@@ -1,4 +1,5 @@
 "use client"
+
 import React, { useEffect, useRef, useState } from 'react';
 import { NextPage } from 'next';
 import Image from 'next/image';
@@ -7,7 +8,6 @@ import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi';
 import { BsFillPlayFill, BsFillPauseFill } from 'react-icons/bs';
 import { GoVerified } from 'react-icons/go';
 import { BsPlay } from 'react-icons/bs';
-import pg from '../public/ramguy.png'
 
 import { Video } from './../types';
 
@@ -23,7 +23,6 @@ const VideoPost: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
   const videoRef = useRef<HTMLVideoElement>(null); 
 
   
-
   const onVideoPress = () => {
     if (playing) {
       videoRef?.current?.pause();
@@ -39,6 +38,7 @@ const VideoPost: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
       videoRef.current.muted = isVideoMuted;
     }
   }, [isVideoMuted]);
+
 
   if(!isShowingOnHome) {
     return (
@@ -76,7 +76,7 @@ const VideoPost: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
                   width={62}
                   height={62}
                   className=' rounded-full'
-                  src={pg}
+                  src={postedBy?.image}
                   alt='user-profile'
                 />
               </>
@@ -112,7 +112,7 @@ const VideoPost: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
               loop
               ref={videoRef}
               src={video.asset.url}
-              className='lg:w-[600px] h-[300px] md:h-[400px] lg:h-[528px] w-[200px] rounded-2xl cursor-pointer bg-gray-100'
+              className='lg:w-[600px]	 h-[300px] md:h-[400px] lg:h-[528px]  rounded-2xl cursor-pointer bg-gray-100'
             ></video>
           </Link>
 
