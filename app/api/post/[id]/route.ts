@@ -42,7 +42,7 @@ export async function PUT(req: NextRequest,{params}:any, res: NextResponse) {
         ])
         .commit();
   
-        return NextResponse.json({data},{status:200});
+        return NextResponse.json(data);
     }catch{
       return NextResponse.json({message:'Error'},{status:500})
 
