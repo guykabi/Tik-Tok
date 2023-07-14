@@ -123,7 +123,7 @@ const Upload = () => {
                       </div>
 
                       <p className='text-gray-400 text-center mt-10 text-sm leading-10'>
-                        MP4 or WebM<br />
+                        Only a video<br />
                         720x1280 resolution or higher <br />
                         Up to 10 minutes <br />
                       </p>
