@@ -5,6 +5,7 @@ import {useRouter} from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import {GoogleLogin, googleLogout} from '@react-oauth/google'
+import {handleToast} from '../utils/toastify'
 import { GetUser } from '@/utils'
 import {IoMdAdd} from 'react-icons/io'
 import {BiSearch} from 'react-icons/bi'
@@ -102,7 +103,7 @@ const NavBar = () => {
           </div>
           :<GoogleLogin 
           onSuccess={(res)=>GetUser(res,addUser)}
-          onError={()=>console.log('Error')}/>
+          onError={()=>handleToast('error','unable to login')}/>
           }
         </div>
     </div>
