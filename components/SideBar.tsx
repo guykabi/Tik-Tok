@@ -36,10 +36,10 @@ const normalLink = 'flex items-center gap-3 hover:bg-primary p-3 justify-center 
           <div className='xl:border-b-2 border-gray-200 xl:pb-4'>
             <Link href='/' passHref>
               <div className={pathname === '/' ? activeLink : normalLink}>
-                <p className='text-2xl'>
+                <p className='text-2xl text-sky-500	'>
                   <AiFillHome />
                 </p>
-                <span className='capitalize text-xl hidden xl:block'>
+                <span className='capitalize text-xl text-sky-500 hidden xl:block'>
                   For You
                 </span>
               </div>
