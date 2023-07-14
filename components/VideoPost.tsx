@@ -66,7 +66,7 @@ const VideoPost: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
   }
 
   return (
-    <div className='flex flex-col border-b-2 border-gray-200 pb-6 w-full	'>
+    <div className='flex flex-col border-b-2 border-black-200 pb-6 w-10/12	'>
       <div>
         <div className='flex gap-3 p-2 cursor-pointer font-semibold rounded'>
           <div className='md:w-16 md:h-16 w-10 h-10'>
