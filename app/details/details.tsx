@@ -5,6 +5,7 @@ import { useRouter,usePathname } from 'next/navigation';
 import { GoVerified } from 'react-icons/go';
 import Image from 'next/image';
 import Link from 'next/link';
+import  {handleToast} from '../../utils/toastify'
 import { useErrorBoundary } from "react-error-boundary";
 import { MdOutlineCancel } from 'react-icons/md';
 import { BsFillPlayFill } from 'react-icons/bs';
@@ -57,16 +58,21 @@ const Details = ({ postDetails,isError }: IProps) => {
   }, [post, isVideoMuted]);
 
   const handleLike = async (like: boolean) => {
-    
-    if (userProfile) {
-      const {data:res} = await axios.put('like', {
-        userId: userProfile._id,
-        postId: post?._id,
-        like
-      });
-      
-      setPost({ ...post, likes: res?.likes });
+
+    try{
+      if (userProfile) {
+        const {data:res} = await axios.put('like', {
+          userId: userProfile._id,
+          postId: post?._id,
+          like
+        });
+        
+        setPost({ ...post, likes: res?.likes });
+      }
+    }catch{
+      return handleToast('error','Unable to complete')
     }
+    
   };
   
 
