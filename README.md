@@ -9,3 +9,12 @@ Vik Vok is a social platform for sharing your videos content with the rest of th
 * Styled with tailwind for compact and quick design
 * Sanity studio for quick and convenient data storage
 * Google Oauth, tosatify etc.
+
+## Clone & Install 
+```
+git clone https://github.com/guykabi/Vik-Vok.git
+```
+Installing dependecies 
+```
+npm install --legacy-peer-deps
+```
