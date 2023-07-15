@@ -2,4 +2,10 @@
 
 ## Description
 
-Vik Vok is a social platform for sharing your content with the rest of the world
+Vik Vok is a social platform for sharing your videos content with the rest of the world in seconds, getting feedbacks from your community and more
+
+## Stack 
+* React typescript / Nextjs 13
+* Styled with tailwind for compact and quick design
+* Sanity studio for quick and convenient data storage
+* Google Oauth, tosatify etc.
