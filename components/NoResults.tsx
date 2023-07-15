@@ -13,7 +13,7 @@ const NoResults = ({ text,subText }: IProps) => {
 
 
   return (
-    <div className='flex flex-col justify-center items-center h-full w-full font-bold	'>
+    <div className='flex flex-col justify-center items-center h-11/12 w-full font-bold mb-8	'>
       <p className='text-8xl'>
         <MdOutlineVideocamOff />
       </p>
