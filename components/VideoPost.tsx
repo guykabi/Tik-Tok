@@ -66,11 +66,11 @@ const VideoPost: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
   }
 
   return (
-    <div className='flex flex-col border-b-2 border-black-200 pb-6 w-10/12	'>
+    <div className='flex flex-col border-b-2 m-auto pb-6 w-10/12 p-2 shadow-lg'>
       <div>
         <div className='flex gap-3 p-2 cursor-pointer font-semibold rounded'>
           <div className='md:w-16 md:h-16 w-10 h-10'>
-            <Link href={`/profile/${postedBy?._id}`} as='image' passHref>
+            <Link href={`/profile/${postedBy?._id}`} passHref>
               <>
                 <Image
                   width={62}
@@ -101,7 +101,7 @@ const VideoPost: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
         </div>
       </div>
 
-      <div className='lg:ml-20 flex gap-4 relative m-auto'>
+      <div className='relative flex lg:ml-20 flex gap-4 justify-center relative items-center'>
         <div
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
@@ -112,12 +112,12 @@ const VideoPost: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
               loop
               ref={videoRef}
               src={video.asset.url}
-              className='lg:w-[600px]	 h-[300px] md:h-[400px] lg:h-[528px]  rounded-2xl cursor-pointer bg-gray-100'
+              className='lg:w-[600px]  h-[300px] md:h-[400px] lg:h-[528px]  rounded-2xl cursor-pointer bg-gray-100 m-auto'
             ></video>
           </Link>
 
           {isHover && (
-            <div className='absolute bottom-6 cursor-pointer left-8 md:left-14 lg:left-0 flex gap-10 lg:justify-between w-[100px] md:w-[50px] lg:w-[600px] p-3'>
+            <div className='absolute ml-6/12 bottom-6 inset-x-0	m-auto cursor-pointer left-8 md:left-14 lg:left-0 flex justify-between gap-10  w-[100px] md:w-[50px] lg:w-[600px] p-3'>
               {playing ? (
                 <button onClick={onVideoPress}>
                   <BsFillPauseFill className='text-black text-2xl lg:text-4xl' />

@@ -36,12 +36,12 @@ const Home = async ({searchParams,
  }
 
   return (
-    <div className='flex flex-col gap-10 videos h-full '>
+    <div className='flex flex-col gap-10 videos h-full'>
       { videos?.length &&typeof videos !== 'string' 
         ? videos?.map((video: Video) => (
           <VideoPost post={video} isShowingOnHome key={video._id} />
         )) 
-        : <NoResults text={`No Videos yet!`} />}
+        : <NoResults text={`No Videos`} />}
     </div>
   );
 };

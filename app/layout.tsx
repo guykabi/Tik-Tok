@@ -34,7 +34,7 @@ export default function RootLayout({
         <body>
         <ErrorBoundary FallbackComponent={ErrorFallBack}>
           <GoogleOAuthProvider clientId={`${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`}>
-          <div className='xl:w-[1200px] m-auto overflow-hidden h-[100vh]'>
+          <div className='xl:w-full m-auto overflow-hidden h-[100vh]'>
             <NavBar/>
              <div className='flex gap-6 md:gap-20 '>
               <div className='h-[92vh] overflow-hidden xl:hover:overflow-auto no-scrollbar'>
