@@ -47,32 +47,31 @@ const NavBar = () => {
           </div>
         </Link>
         
-        <div className='relative hidden md:block'>
+        <div className='relative flex items-center justify-center hidden md:block w-4/12'>
         <form
           onSubmit={handleSearch}
-          className='absolute md:static top-10 -left-20  '
+          className='m-auto'
         >
           <input
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value.trim())}
-            className='bg-white hover:bg-primary p-3 md:text-md font-medium border-2 border-gray-100 focus:outline-none focus:border-2 focus:border-gray-300 w-[300px]  md:w-[350px] rounded-full  md:top-0'
+            className='bg-white hover:bg-primary p-3 md:text-md font-medium border-2 border-gray-100 focus:outline-none focus:border-2 focus:border-gray-300 w-full rounded-full'
             placeholder='Accounts and videos'
           />
           <button
             onClick={handleSearch}
             className='absolute md:right-5 right-6 top-4 border-l-2 border-gray-300 pl-4 text-2xl text-gray-400'
           >
-            <BiSearch />
+            <BiSearch className='hover:scale-110' />
           </button>
         </form>
       </div>
-      <div></div>
 
         <div>
           {userProfile?
           <div className='flex gap-5 md:gap-10'>
            <Link href='/create' passHref>
-              <button className='border-2 border-slate-100 px-2 hover:bg-primary md:px-4 text-md font-semibold flex items-center gap-2 p-2 rounded-lg	'>
+              <button className='border-2  border-slate-100 px-2 hover:bg-primary md:px-4 text-md font-semibold flex items-center gap-2 p-2 rounded-lg'>
                 <IoMdAdd className='text-xl' />{' '}
                 <span className='hidden md:block'>Create</span>
               </button>
