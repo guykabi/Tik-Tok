@@ -3,6 +3,7 @@
 ## Description
 
 Vik Vok is a social platform for sharing your videos content with the rest of the world in seconds, getting feedbacks from your community and more
+*Fully responsive for all devices
 
 ## Stack 
 * React typescript / Nextjs 13
