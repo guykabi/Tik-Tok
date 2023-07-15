@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import {handleToast} from '../../utils/toastify'
 import { SanityAssetDocument } from '@sanity/client';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 import { useErrorBoundary } from "react-error-boundary";
@@ -78,7 +79,7 @@ const Upload = () => {
 
       try{
         await axios.post('post', newPost);
-        
+        handleToast('success','Your post is ready!')
         router.push('/');
       }catch(err:any){
 
