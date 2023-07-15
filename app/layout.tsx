@@ -5,6 +5,7 @@ import React,{useState,useEffect} from 'react'
 import NavBar from '@/components/NavBar'
 import SideBar from '@/components/SideBar'
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {GoogleOAuthProvider} from '@react-oauth/google'
 import {ErrorBoundary} from 'react-error-boundary'
 import ErrorFallBack from '../components/Error'
