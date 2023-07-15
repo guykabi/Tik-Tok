@@ -11,6 +11,7 @@ import {IoMdAdd} from 'react-icons/io'
 import {BiSearch} from 'react-icons/bi'
 import authStore from '../zustore/auth-store'
 import { AiOutlineLogout } from 'react-icons/ai';
+import useIsClickOut from '../hooks/useClickOutSide'
 import { IUser } from '../types';
 import SearchBar from './SearchBar'
 
@@ -21,6 +22,7 @@ const NavBar = () => {
   const [searchValue, setSearchValue] = useState('');
   const [isOpenSearch,setIsOpenSearch]=useState(false)
   const [user, setUser] = useState<IUser | null>();
+  const [eleCallBack] = useIsClickOut(setIsOpenSearch)
   const {addUser,userProfile,removeUser} = authStore()
   const router = useRouter();
 
@@ -60,13 +62,13 @@ const NavBar = () => {
         <div className='relative flex w-[40px] items-center justify-center sm:hidden '>
           <button
             className=' m-auto right-6 border-gray-300 pl-4 text-2xl text-gray-400 '
-            onClick={()=>setIsOpenSearch(prev=>!prev)}
+            onClick={()=>setIsOpenSearch(true)}
           >
             <BiSearch className='hover:scale-110' />
           </button>
          
           {isOpenSearch?
-           <div className='absolute z-10 w-[260px] min-w-250	 top-10 m-auto'>
+           <div ref={eleCallBack} className='absolute z-10 w-[260px] min-w-250	 top-10 m-auto'>
            <SearchBar 
            handleSearch={handleSearch} 
            searchValue={searchValue}
