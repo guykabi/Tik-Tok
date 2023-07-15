@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { SanityAssetDocument } from '@sanity/client';
 import { FaCloudUploadAlt } from 'react-icons/fa';
+import { useErrorBoundary } from "react-error-boundary";
 import { MdDelete } from 'react-icons/md';
 import axios from '../api/api-instance';
 
@@ -19,6 +20,8 @@ const Upload = () => {
   const [savingPost, setSavingPost] = useState<String | undefined>('Post');
   const [videoAsset, setVideoAsset] = useState<SanityAssetDocument | undefined>();
   const [wrongFileType, setWrongFileType] = useState<Boolean>(false);
+  const { showBoundary } = useErrorBoundary();
+
 
   const userProfile: any = authStore((state) => state.userProfile);
   const router = useRouter();
@@ -74,16 +77,23 @@ const Upload = () => {
 
 
       try{
-        let res = await axios.post('post', newPost);
-       
+        await axios.post('post', newPost);
+        
         router.push('/');
-      }catch{
+      }catch(err:any){
+
+       if(err.response.status == 500){
+          showBoundary(err)
+       }
+       else{
+        
         setSavingPost('Unabled to post')
         let timer = setTimeout(()=>{
            setSavingPost('Post')
         },3000)
         return ()=> clearTimeout(timer)
-      }
+       }
+     }
               
     }
   };
@@ -96,8 +106,8 @@ const Upload = () => {
   };
 
   return (
-    <div className='flex w-full h-fit	 absolute left-0 top-[60px] lg:top-[70px] mb-10 pt-10 lg:pt-20 bg-[#F8F8F8] justify-center'>
-      <div className=' bg-white rounded-lg xl:h-[80vh] flex gap-6 flex-wrap justify-center items-center p-14 pt-4'>
+    <div className='flex w-full h-[100vh]	 absolute left-0 top-[60px] lg:top-[70px] mb-10 pt-10 lg:pt-20 bg-[#F8F8F8] justify-center'>
+      <div className=' bg-white rounded-lg xl:h-[fit] flex gap-6 flex-wrap justify-center items-center p-14 pt-4'>
         <div>
           <div>
             <p className='text-2xl font-bold'>Upload Video</p>
