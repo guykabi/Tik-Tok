@@ -16,7 +16,7 @@ interface IProps {
   isShowingOnHome?: boolean;
 }
 
-const VideoPost: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, likes }, isShowingOnHome }) => {
+const VideoPost: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, likes }, isShowingOnHome}) => {
   const [playing, setPlaying] = useState(false);
   const [isHover, setIsHover] = useState(false);
   const [isVideoMuted, setIsVideoMuted] = useState(false);
@@ -63,10 +63,11 @@ const VideoPost: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
         </Link>
       </div>
     )
-  }
+  } 
+
 
   return (
-    <div className='flex flex-col border-b-2 m-auto pb-6 w-10/12 p-2 shadow-lg'>
+    <div className='relative flex flex-col border-b-2 m-auto pb-6 w-10/12 p-2 shadow-md	'>
       <div>
         <div className='flex gap-3 p-2 cursor-pointer font-semibold rounded'>
           <div className='md:w-16 md:h-16 w-10 h-10'>
@@ -75,9 +76,10 @@ const VideoPost: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
                 <Image
                   width={62}
                   height={62}
-                  className=' rounded-full'
+                  className=' rounded-full hover:scale-110 '
                   src={postedBy?.image}
                   alt='user-profile'
+
                 />
               </>
             </Link>
@@ -100,8 +102,11 @@ const VideoPost: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
           </div>
         </div>
       </div>
-
-      <div className='relative flex lg:ml-20 flex gap-4 justify-center relative items-center'>
+      <div className='absolute left-0 bottom-0 items-center flex flex-row pl-2 pb-2 text-xl z-10'>
+            <BsPlay size={35}/>
+            {likes?.length || 0}
+        </div>
+      <div className='relative flex lg:ml-20 flex gap-4 justify-center relative items-center pb-4'>
         <div
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
@@ -117,7 +122,7 @@ const VideoPost: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
           </Link>
 
           {isHover && (
-            <div className='absolute ml-6/12 bottom-6 inset-x-0	m-auto cursor-pointer left-8 md:left-14 lg:left-0 flex justify-between gap-10  w-[100px] md:w-[50px] lg:w-[600px] p-3'>
+            <div className='absolute ml-6/12 bottom-10 inset-x-0	m-auto cursor-pointer left-8 md:left-14 lg:left-0 flex justify-between gap-10  w-[100px] md:w-[50px] lg:w-[600px] p-3'>
               {playing ? (
                 <button onClick={onVideoPress}>
                   <BsFillPauseFill className='text-black text-2xl lg:text-4xl' />
