@@ -2,6 +2,7 @@ import axios from "../app/api/api-instance";
 import VideoPost from '../components/VideoPost';
 import { Video } from '../types';
 import NoResults from '../components/NoResults';
+import Error from '../components/Error'
 
 
 async function getVideos(topic:any): Promise<Video[]|string>{
@@ -17,7 +18,7 @@ async function getVideos(topic:any): Promise<Video[]|string>{
       return res
   
     }catch{
-       return 'Something went wrong'
+       return 'Error'
     }
   
 }
@@ -28,20 +29,21 @@ const Home = async ({searchParams,
   searchParams?: { [key: string]: string | string[] | undefined }
   }) => {
     
-  
+
  const videos = await getVideos(searchParams?.topic)
 
- if(videos === 'Something went wrong'){
-  return <div>{videos}</div>
+ if(videos === 'Error'){ 
+    return <Error/>
  }
 
   return (
-    <div className='flex flex-col gap-10 videos h-full'>
-      { videos?.length &&typeof videos !== 'string' 
+    <div className='flex flex-col gap-10 videos h-full shadow-lg
+      overflow-scroll no-scrollbar pt-2'>
+      { videos?.length && typeof videos !== 'string' 
         ? videos?.map((video: Video) => (
-          <VideoPost post={video} isShowingOnHome key={video._id} />
+          <VideoPost post={video} isShowingOnHome  key={video._id} />
         )) 
-        : <NoResults text={`No Videos`} />}
+        : <NoResults text={`No Videos`}  />}
     </div>
   );
 };
