@@ -12,12 +12,14 @@ import {BiSearch} from 'react-icons/bi'
 import authStore from '../zustore/auth-store'
 import { AiOutlineLogout } from 'react-icons/ai';
 import { IUser } from '../types';
+import SearchBar from './SearchBar'
 
 import Logo from '../public/vik-vok-logo2.png'
 
 const NavBar = () => {
 
   const [searchValue, setSearchValue] = useState('');
+  const [isOpenSearch,setIsOpenSearch]=useState(false)
   const [user, setUser] = useState<IUser | null>();
   const {addUser,userProfile,removeUser} = authStore()
   const router = useRouter();
@@ -33,6 +35,8 @@ const NavBar = () => {
     if(searchValue) {
       router.push(`/search/${searchValue}`);
     }
+    if(isOpenSearch)setIsOpenSearch(false)
+    setSearchValue('')
   };
 
   return (
@@ -47,24 +51,27 @@ const NavBar = () => {
           </div>
         </Link>
         
-        <div className='relative flex items-center justify-center hidden md:block w-4/12'>
-        <form
-          onSubmit={handleSearch}
-          className='m-auto'
-        >
-          <input
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value.trim())}
-            className='bg-white hover:bg-primary p-3 md:text-md font-medium border-2 border-gray-100 focus:outline-none focus:border-2 focus:border-gray-300 w-full rounded-full'
-            placeholder='Accounts and videos'
-          />
+        <div className='relative flex items-center justify-center hidden sm:block w-5/12 md:w-4/12'>
+           <SearchBar 
+           handleSearch={handleSearch} 
+           searchValue={searchValue}
+           setSearchValue={(e)=>setSearchValue(e)}/>
+        </div>
+        <div className='relative flex w-[40px] items-center justify-center sm:hidden '>
           <button
-            onClick={handleSearch}
-            className='absolute md:right-5 right-6 top-4 border-l-2 border-gray-300 pl-4 text-2xl text-gray-400'
+            className=' m-auto right-6 border-gray-300 pl-4 text-2xl text-gray-400 '
+            onClick={()=>setIsOpenSearch(prev=>!prev)}
           >
             <BiSearch className='hover:scale-110' />
           </button>
-        </form>
+         
+          {isOpenSearch?
+           <div className='absolute z-10 w-[260px] min-w-250	 top-10 m-auto'>
+           <SearchBar 
+           handleSearch={handleSearch} 
+           searchValue={searchValue}
+           setSearchValue={(e)=>setSearchValue(e)}/>
+           </div>:null}
       </div>
 
         <div>
