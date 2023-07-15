@@ -14,7 +14,10 @@ Vik Vok is a social platform for sharing your videos content with the rest of th
 ```
 git clone https://github.com/guykabi/Vik-Vok.git
 ```
-Installing dependecies 
+Installing dependencies 
 ```
 npm install --legacy-peer-deps
+npm run build / next build
+npm start / next start
 ```
+
