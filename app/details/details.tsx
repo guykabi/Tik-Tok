@@ -163,13 +163,16 @@ const Details = ({ postDetails,isError }: IProps) => {
                 <p className=' text-md text-gray-600'>{post.caption}</p>
               </div>
               <div className='mt-10 px-10'>
-                {userProfile && 
+                {userProfile ? 
                 <LikeButton
                   likes={post?.likes}
                   flex='flex'
                   handleLike={() => handleLike(true)}
                   handleDislike={() => handleLike(false)}
-                />}
+                />:
+                <div className='item-center m-auto font-bold text-lg		'>
+                  Sign in with google account to like & comment
+                </div>}
               </div>
               <Comments
                 comment={comment}
