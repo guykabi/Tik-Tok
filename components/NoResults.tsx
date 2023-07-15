@@ -7,7 +7,7 @@ interface IProps {
 
 const NoResults = ({ text }: IProps) => {
   return (
-    <div className='flex flex-col justify-center items-center h-full w-full'>
+    <div className='flex flex-col justify-center items-center h-full w-full font-bold	'>
       <p className='text-8xl'>
         <MdOutlineVideocamOff />
       </p>
